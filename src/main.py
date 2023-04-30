@@ -5,6 +5,8 @@ import numpy as np
 #Importa archivo csv para tabla actor y lo añade a DataFrame.
 df_actor = pd.read_csv('../data/actor.csv')
 
+#LIMPIEZA 1 -----
+
 #Cuenta nulos.
 actor_null = df_actor.isnull().sum()
 
@@ -148,3 +150,5 @@ df_rental.drop('last_update', axis=1, inplace=True)
 
 #Printea df sin columna last_update
 display(df_rental)
+
+#LIMPIEZA 2 -----
