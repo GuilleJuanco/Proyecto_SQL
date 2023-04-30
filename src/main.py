@@ -5,7 +5,7 @@ import numpy as np
 #Importa archivo csv para tabla actor y lo añade a DataFrame.
 df_actor = pd.read_csv('../data/actor.csv')
 
-#LIMPIEZA 1 -----
+#----- LIMPIEZA 1 -----
 
 #Cuenta nulos.
 actor_null = df_actor.isnull().sum()
@@ -151,4 +151,31 @@ df_rental.drop('last_update', axis=1, inplace=True)
 #Printea df sin columna last_update
 display(df_rental)
 
-#LIMPIEZA 2 -----
+#----- LIMPIEZA 2 Y TRANSFORMACION -----
+
+#Quita nombre y apellido por nombre completo en columna actor.
+df_actor['actor_name'] = df_actor['first_name'] + ' ' + df_actor['last_name']
+df_actor.drop(['first_name', 'last_name'], axis=1, inplace=True)
+
+#Cambia nombre de columna name en DF category por category_name.
+df_category['category_name'] = df_category['name']
+df_category.drop(['name'], axis=1, inplace=True)
+
+#Quita la columna store_id del DF inventory.
+df_inventory.drop(['store_id'], axis=1, inplace=True)
+
+#Cambia nombre de columna name por language_name en DF language.
+df_language['language_name'] = df_language['name']
+df_language.drop(['name'], axis=1, inplace=True)
+
+#Cambia df_old por df_actor_has_film.
+df_actor_has_film = df_old
+
+#Cambia nombre de columna first_name y last_name por actor_name en actor_has_film.
+df_actor_has_film['actor_name'] = df_actor_has_film['first_name'] + ' ' + df_actor_has_film['last_name']
+df_actor_has_film.drop(['first_name', 'last_name'], axis=1, inplace=True)
+
+#Eliminar columnas rental_duration, rental_rate y replacement_cost en film.
+df_film.drop(['rental_duration', 'rental_rate', 'replacement_cost'], axis=1, inplace=True)
+
+#----- Mergear columnas -----
