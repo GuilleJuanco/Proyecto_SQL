@@ -178,4 +178,9 @@ df_actor_has_film.drop(['first_name', 'last_name'], axis=1, inplace=True)
 #Eliminar columnas rental_duration, rental_rate y replacement_cost en film.
 df_film.drop(['rental_duration', 'rental_rate', 'replacement_cost'], axis=1, inplace=True)
 
-#----- Mergear columnas -----
+#----- MERGE COLUMNAS -----
+
+#Incluye film_id en el datframe df_actor_has_film.
+df_actor_has_film = df_actor_has_film.merge(df_film[['film_id', 'title']], left_on='title', right_on='title')
+
+#Incluye actor_id en el datframe df_actor_has_film.
