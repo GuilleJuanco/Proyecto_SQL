@@ -56,12 +56,12 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `videoclub`.`film` (
   `film_id` INT NOT NULL,
   `title` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(1000) NOT NULL,
   `release_year` INT NOT NULL,
   `language_id` INT NOT NULL,
   `length` INT NOT NULL,
   `rating` VARCHAR(45) NOT NULL,
-  `special_features` VARCHAR(45) NOT NULL,
+  `special_features` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`film_id`),
   INDEX `fk_film_language1_idx` (`language_id` ASC) VISIBLE,
   CONSTRAINT `fk_film_language1`

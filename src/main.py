@@ -184,3 +184,59 @@ df_film.drop(['rental_duration', 'rental_rate', 'replacement_cost'], axis=1, inp
 df_actor_has_film = df_actor_has_film.merge(df_film[['film_id', 'title']], left_on='title', right_on='title')
 
 #Incluye actor_id en el datframe df_actor_has_film.
+df_actor_has_film = df_actor_has_film.merge(df_actor[['actor_id', 'actor_name']], left_on='actor_name', right_on='actor_name')
+
+# ----- CONEXION PANDAS-SQL ----- 
+
+#Importa SQL Alchemy.
+from sqlalchemy import create_engine
+
+#Crea string de conexión y cursor.
+str_conn = 'mysql+pymysql://root:juanco55@127.0.0.1:3306/videoclub'
+
+cursor = create_engine(str_conn)
+
+#RESPETAR JERARQUIA MADRE-HIJA
+
+#Inserta datos en df_category.
+df_category.to_sql(name='category', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
+#Inserta datos en df_language.
+df_language.to_sql(name='language', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
+#Inserta datos en df_actor.
+df_actor.to_sql(name='actor', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
+#Inserta datos en df_film.
+df_film.to_sql(name='film', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
+#Inserta datos en df_actor_has_film.
+df_actor_has_film.to_sql(name='actor_has_film', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
+#Inserta datos en df_inventory.
+df_inventory.to_sql(name='inventory', 
+            con=cursor,
+            if_exists='append',   
+            index=False
+           )
+
