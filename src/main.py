@@ -192,7 +192,7 @@ df_actor_has_film = df_actor_has_film.merge(df_actor[['actor_id', 'actor_name']]
 from sqlalchemy import create_engine
 
 #Crea string de conexión y cursor.
-str_conn = 'mysql+pymysql://root:juanco55@127.0.0.1:3306/videoclub'
+str_conn = 'mysql+pymysql://root:-------@127.0.0.1:3306/videoclub'
 
 cursor = create_engine(str_conn)
 
